@@ -1,0 +1,78 @@
+import java.util.*;
+
+public class Customer {
+    private int id;
+    private double balance;
+    private String firstName;
+    private String lastName;
+
+    public Customer(int id, double balance, String firstName, String lastName) {
+        this.id = id;
+        this.balance = balance;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "ID=" + id +
+                ", Balance=" + balance +
+                ", First Name='" + firstName + '\'' +
+                ", Last Name='" + lastName + '\'' +
+                '}';
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        List<Customer> customers = new ArrayList<>();
+
+        customers.add(new Customer(1, 15000.0, "utsav", "mathur"));
+        customers.add(new Customer(2, 12000.0, "migga", "singh"));
+        customers.add(new Customer(3, 8000.0, "nrihaal", "harihar"));
+        customers.add(new Customer(4, 20000.0, "loha", "gupta"));
+
+        customers.sort(Comparator
+                .comparing(Customer::getFirstName)
+                .thenComparing(Customer::getLastName)
+                .thenComparing(Customer::getId)
+                .thenComparing(Customer::getBalance));
+
+        for (Customer customer : customers) {
+            System.out.println(customer);
+  }
+ }
+}
